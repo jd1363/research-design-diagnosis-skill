@@ -1,4 +1,4 @@
-# Initialize Git Repository for Research Design Diagnosis Skill
+﻿# Initialize Git Repository for Research Design Diagnosis Skill
 
 Write-Host "Initializing Git repository..." -ForegroundColor Green
 

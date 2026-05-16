@@ -1,4 +1,4 @@
-# 实验设计经典诊断标准（基于 Montgomery 实验设计圣经）
+﻿# 实验设计经典诊断标准（基于 Montgomery 实验设计圣经）
 
 本文档基于Douglas C. Montgomery的《Design and Analysis of Experiments》以及Wu & Hamada的《Experiments: Planning, Analysis, and Optimization》，是所有工科实验设计的权威标准。
 

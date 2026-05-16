@@ -1,4 +1,4 @@
-# 深度学习实验设计黄金标准（基于 Goodfellow《深度学习》第11章）
+﻿# 深度学习实验设计黄金标准（基于 Goodfellow《深度学习》第11章）
 
 Goodfellow, Bengio, Courville 的《Deep Learning》第11章"Practical Methodology"是所有深度学习实验的权威标准，也是NeurIPS/ICLR/CVPR等顶会审稿人的默认参考框架。
 

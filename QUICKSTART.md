@@ -1,4 +1,4 @@
-# 🚀 Research Design Diagnosis Skill - Quick Start Guide
+﻿# 🚀 Research Design Diagnosis Skill - Quick Start Guide
 
 ## 📦 Skill Package Ready!
 

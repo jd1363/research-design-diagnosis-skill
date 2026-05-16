@@ -1,4 +1,4 @@
-# CS论文写作与实验呈现标准（基于 Justin Zobel 《Writing for Computer Science》）
+﻿# CS论文写作与实验呈现标准（基于 Justin Zobel 《Writing for Computer Science》）
 
 这是计算机科学领域论文写作的权威标准，也是所有审稿人潜意识里的评判框架。
 
