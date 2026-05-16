@@ -1,0 +1,65 @@
+{
+  "name": "研究设计诊断技能",
+  "id": "research-design-diagnosis",
+  "version": "1.0.0",
+  "description": "AI/工科SCI顶刊研究设计诊断工具。系统性诊断实验设计、基线对比、消融实验、统计检验、可复现性等核心问题，基于Montgomery、Goodfellow、Zobel三本经典方法论。",
+  "author": "胖小助手",
+  "category": "research",
+  "tags": ["实验设计", "SCI论文", "机器学习", "深度学习", "审稿", "研究方法"],
+  
+  "compatibility": {
+    "claude-code": true,
+    "codex": true,
+    "openclaw": true,
+    "cursor": true
+  },
+  
+  "triggers": [
+    "诊断研究设计",
+    "看看这个实验设计",
+    "能投一区吗",
+    "实验有什么问题",
+    "审稿意见",
+    "研究设计",
+    "实验设计",
+    "消融实验",
+    "基线对比",
+    "可复现性"
+  ],
+  
+  "entry_point": "SKILL.md",
+  
+  "references": [
+    "references/ai-engineering-standards.md",
+    "references/experimental-design-standards.md",
+    "references/deep-learning-practice.md",
+    "references/cs-paper-standards.md",
+    "references/discipline-standards.md",
+    "references/methodology-books.md",
+    "references/case-studies.md"
+  ],
+  
+  "usage_example": {
+    "input": "帮我诊断一下这个研究设计：我做了一个新的图像分割模型，在Cityscapes上mIoU比SOTA高1.2%，每个模型跑了一次，对比了3个方法，有消融实验，代码准备开源。",
+    "output": "按照四层诊断框架输出完整诊断报告，包括红牌问题、详细诊断、改进建议、期刊等级评估。"
+  },
+  
+  "features": [
+    "7个红牌问题快速筛查（一票否决）",
+    "Montgomery实验设计圣经标准诊断",
+    "Goodfellow深度学习实践规范检查",
+    "Zobel论文呈现与论证质量评估",
+    "SCI期刊等级适配性评估",
+    "优先级改进清单（按严重程度排序）",
+    "支持社科/工科双范式诊断"
+  ],
+  
+  "installation": {
+    "claude-code": "将此文件夹放入Claude Code的skills目录，或在对话中直接@引用SKILL.md",
+    "codex": "将此文件夹加入Codex的技能库路径",
+    "openclaw": "复制到 ~/.openclaw/skills/ 目录",
+    "cursor": "直接在项目中引入，或放入全局技能目录"
+  },
+  
+  "last_updated": "2026-05-16"
+}

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究设计诊断工具 - SCI顶刊版</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        h1 { 
+            color: #2c3e50; 
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .layer {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .layer h2 {
+            color: #3498db;
+            margin-bottom: 16px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .layer.red h2 { color: #e74c3c; }
+        .layer.orange h2 { color: #e67e22; }
+        .layer.green h2 { color: #27ae60; }
+        .layer.purple h2 { color: #9b59b6; }
+        
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: background 0.2s;
+        }
+        .check-item:hover { background: #f8f9fa; }
+        .check-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+        .check-item label {
+            flex: 1;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+        .check-item .note {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 4px;
+        }
+        .fatal { color: #e74c3c; font-weight: bold; }
+        
+        .score-section {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .score-number {
+            font-size: 64px;
+            font-weight: bold;
+        }
+        .score-label {
+            font-size: 24px;
+            margin-top: 8px;
+        }
+        .journal-level {
+            font-size: 18px;
+            margin-top: 12px;
+            opacity: 0.9;
+        }
+        
+        .improvement-list {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff3cd;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+        }
+        .improvement-list h3 {
+            color: #856404;
+            margin-bottom: 12px;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.2s;
+        }
+        button:hover { background: #2980b9; }
+        button.danger { background: #e74c3c; }
+        button.danger:hover { background: #c0392b; }
+        
+        .btn-group {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .reference {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔬 研究设计诊断工具</h1>
+    <p class="subtitle">基于 Montgomery · Goodfellow · Zobel 三本领域圣经 | AI/工科SCI顶刊版</p>
+    
+    <div class="btn-group">
+        <button onclick="calculateScore()">📊 计算得分</button>
+        <button onclick="resetAll()" class="danger">🔄 重置</button>
+    </div>
+    
+    <div id="scoreSection" class="score-section" style="display: none;">
+        <div class="score-number" id="scoreNumber">--</div>
+        <div class="score-label" id="scoreLabel">--</div>
+        <div class="journal-level" id="journalLevel">--</div>
+    </div>
+    
+    <!-- 第1层：红牌快速筛查 -->
+    <div class="layer red">
+        <h2>🚦 第1层：红牌快速筛查 <span class="reference">（AI顶会标准，一票否决）</span></h2>
+        
+        <div class="check-item">
+            <input type="checkbox" id="r1" data-score="1">
+            <label for="r1">
+                <span class="fatal">【红牌1】</span> 每个实验条件至少重复3次，报告了均值 ± 标准差
+                <div class="note">n=1是所有顶会审稿人的零容忍项。至少3次，推荐5-10次。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="r2" data-score="1">
+            <label for="r2">
+                <span class="fatal">【红牌2】</span> 对比了近1-2年的SOTA方法，至少5-8个基线
+                <div class="note">基线层次要完整：常识基线 → 经典ML → 标准架构 → 近年SOTA。只跟老方法比直接拒。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="r3" data-score="1">
+            <label for="r3">
+                <span class="fatal">【红牌3】</span> 每个声称的创新点都做了单独的消融实验
+                <div class="note">"堆了10个模块，说每个都有用"但没做消融 = 没人信。每个创新点必须单独验证。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="r4" data-score="1">
+            <label for="r4">
+                <span class="fatal">【红牌4】</span> 做了统计显著性检验（t检验/ANOVA等）
+                <div class="note">只报均值不报方差和p值 = "我也不知道是不是真的有差异"。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="r5" data-score="1">
+            <label for="r5">
+                <span class="fatal">【红牌5】</span> 测试集完全没参与训练/调参，没有数据泄露
+                <div class="note">Goodfellow警告："如果你在测试集上做了任何决定，那你的测试集性能就是假的。"</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="r6" data-score="1">
+            <label for="r6">
+                <span class="fatal">【红牌6】</span> 所有方法在完全相同条件下运行（硬件/轮次/参数等）
+                <div class="note">自己的方法训1000epoch，基线只训100epoch = 作弊，审稿人一眼识破。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="r7" data-score="1">
+            <label for="r7">
+                <span class="fatal">【红牌7】</span> 报告了该任务的全套标准指标（不只是最好看的那个）
+                <div class="note">分类只报准确率，检测只报mAP@0.5，分割只报mIoU = 选择性报告，不可信。</div>
+            </label>
+        </div>
+    </div>
+    
+    <!-- 第2层：实验设计科学性 -->
+    <div class="layer orange">
+        <h2>🔬 第2层：实验设计科学性 <span class="reference">（Montgomery 实验设计圣经）</span></h2>
+        
+        <div class="check-item">
+            <input type="checkbox" id="e1" data-score="2">
+            <label for="e1">
+                实验顺序是随机化的，避免了顺序效应/漂移效应
+                <div class="note">Montgomery核心原则：不随机化，你永远不知道是方法有效还是时间/设备在变。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="e2" data-score="2">
+            <label for="e2">
+                没有用"一次只变一个变量"，测试了因子之间的交互效应
+                <div class="note">90%的人还在犯这个本科错误。A+B的效果不等于A的效果加B的效果，必须验证交互。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="e3" data-score="2">
+            <label for="e3">
+                做了模块之间的交互效应验证
+                <div class="note">你的三个创新点是互补还是冗余？1+1是大于2还是小于1？</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="e4" data-score="2">
+            <label for="e4">
+                样本量有检验力分析，不是拍脑袋定的
+                <div class="note">效应量0.2需要每组n=400才能有80%的检验力。n=3只能检测到超大效应。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="e5" data-score="2">
+            <label for="e5">
+                如果是优化实验，做了中心点重复来估计纯误差
+                <div class="note">没有重复，你就不知道误差有多大，所有结论都是空中楼阁。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="e6" data-score="2">
+            <label for="e6">
+                混淆变量（GPU型号、实验时间等）做了分块或控制
+                <div class="note">你以为是方法有效，其实只是你的实验在新GPU上跑得更快。</div>
+            </label>
+        </div>
+    </div>
+    
+    <!-- 第3层：深度学习实践规范 -->
+    <div class="layer green">
+        <h2>🧠 第3层：深度学习实践规范 <span class="reference">（Goodfellow 深度学习第11章）</span></h2>
+        
+        <div class="check-item">
+            <input type="checkbox" id="d1" data-score="2">
+            <label for="d1">
+                先跑了最简单的基准，确认问题是可解的，然后再一点点加改进
+                <div class="note">Goodfellow终极建议：90%的人一开始就搞复杂的，最后发现简单基准比他的还好。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="d2" data-score="2">
+            <label for="d2">
+                超参数优化用了随机搜索/贝叶斯优化，不是手工试错
+                <div class="note">手工试5组参数就说"这是最优的" = 自欺欺人。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="d3" data-score="2">
+            <label for="d3">
+                所有随机种子都记录了（初始化、数据划分、打乱）
+                <div class="note">可复现性的基础。别人连你的随机种子都不知道，怎么复现你的结果？</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="d4" data-score="2">
+            <label for="d4">
+                过拟合/欠拟合诊断完整（训练误差、验证误差都报告）
+                <div class="note">只看验证误差，你永远不知道是过拟合还是欠拟合。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="d5" data-score="2">
+            <label for="d5">
+                报告了资源消耗（参数量、FLOPs、训练时间、推理时间）
+                <div class="note">"我的方法比SOTA高0.5%但参数量是10倍" = 没有意义的比较。</div>
+            </label>
+        </div>
+    </div>
+    
+    <!-- 第4层：论文呈现与论证质量 -->
+    <div class="layer purple">
+        <h2>📝 第4层：论文呈现与论证质量 <span class="reference">（Zobel CS论文写作标准）</span></h2>
+        
+        <div class="check-item">
+            <input type="checkbox" id="p1" data-score="2">
+            <label for="p1">
+                假设是可证伪的、范围明确的、精确具体的
+                <div class="note">❌ "我们的方法很好" | ✅ "在X条件下，我们的方法比SOTA在Y指标上至少高Z%"</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="p2" data-score="2">
+            <label for="p2">
+                没有六大科学谬误（事后假设、重命名、黑箱、稻草人、遗漏变量、过度泛化）
+                <div class="note">审稿人一眼就能看出来的硬伤。"把旧方法换个新名字"是重命名谬误的典型。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="p3" data-score="2">
+            <label for="p3">
+                报告了效应量和置信区间，不只是p值
+                <div class="note">p值只告诉你"有没有差异"，效应量告诉你"差异有多大"，这才是实际意义。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="p4" data-score="2">
+            <label for="p4">
+                诚实报告了负面结果和局限性，不是只报好的
+                <div class="note">Zobel：诚实报告局限性反而会增加可信度。完美的论文 = 不可信的论文。</div>
+            </label>
+        </div>
+        
+        <div class="check-item">
+            <input type="checkbox" id="p5" data-score="2">
+            <label for="p5">
+                讨论部分解释了"为什么有效"，不只是报告"确实有效"
+                <div class="note">90%的论文讨论部分都是垃圾。解释机制，分析失败案例，这才是你的贡献。</div>
+            </label>
+        </div>
+    </div>
+    
+    <div id="improvementSection" class
