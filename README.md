@@ -1,15 +1,14 @@
-﻿
 <div align="center">
 
 # 🔬 Research Design Diagnosis Skill
 
-**帮你避开90%论文被拒坑的研究设计诊断工具**
+**帮你避开90%论文被拒坑的研究设计诊断工具
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/research-design-diagnosis-skill)](https://github.com/yourusername/research-design-diagnosis-skill/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/jd1363/research-design-diagnosis-skill)](https://github.com/jd1363/research-design-diagnosis-skill/stargazers)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-基于三本领域圣经构建的 **AI/工科SCI顶刊研究设计诊断技能包**，帮你在投稿前发现所有实验设计硬伤。
+基于三本领域圣经构建的 **AI/工科SCI顶刊研究设计诊断技能包，帮你在投稿前发现所有实验设计硬伤。
 
 </div>
 
@@ -85,16 +84,17 @@ cp -r research-design-diagnosis-skill ~/.openclaw/skills/
 
 ```
 research-design-diagnosis-skill/
-├── 📄 skill.json              # Claude Code/Codex 自动识别元数据
-├── 📄 SKILL.md                # 主技能文件，四层诊断框架完整逻辑
-├── 📄 README.md               # 本文件
-├── 📄 QUICKSTART.md           # 快速开始指南
-├── 📄 LICENSE                 # MIT开源协议
-├── 📄 .gitignore              # Git忽略文件
-├── 📄 DIAGNOSTIC-TOOL.html    # 浏览器独立诊断工具
-├── 📂 evals/
+├── skill.json              # Claude Code/Codex 自动识别元数据
+├── SKILL.md                # 主技能文件，四层诊断框架完整逻辑
+├── README.md               # 本文件
+├── QUICKSTART.md           # 快速开始指南
+├── LICENSE                 # MIT开源协议
+├── .gitignore              # Git忽略文件
+├── .gitattributes          # UTF-8编码配置
+├── DIAGNOSTIC-TOOL.html    # 浏览器独立诊断工具
+├── evals/
 │   └── evals.json             # 测试用例和示例输入输出
-└── 📂 references/             # 7本经典方法论诊断标准
+└── references/             # 7本经典方法论诊断标准
     ├── ai-engineering-standards.md      AI/工科顶刊标准
     ├── experimental-design-standards.md  Montgomery实验设计圣经
     ├── deep-learning-practice.md        Goodfellow深度学习第11章
@@ -197,173 +197,3 @@ MIT License - 详见 [LICENSE](LICENSE) 文件。
 🎯 帮你省下六个月的投稿弯路
 
 </div>
-",
-  )
-END
-
-现在创建CONTRIBUTING.md：
-[
-  '
-## 贡献指南
-
-欢迎贡献！无论你是想补充诊断标准、修复bug、还是添加新功能，都非常欢迎！
-
----
-
-### 🚀 如何贡献
-
-#### 1. 提交Issue
-- 发现bug请提Issue
-- 想添加新功能先提Issue讨论
-- 建议补充某领域的标准也请提Issue
-
-#### 2. 提交PR
-1. Fork本仓库
-2. 创建你的特性分支 (`git checkout -b feature/amazing-feature`)
-3. 提交你的改动 (`git commit -m 'Add some amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 打开一个Pull Request
-
----
-
-### 📝 可以贡献的内容
-
-#### 🔧 补充领域标准
-- 添加某个细分领域的特异性诊断标准（如：机器人学、强化学习、理论计算机、生物信息学等）
-- 补充某顶会/顶刊的审稿偏好标准
-- 添加不同国家/地区的审稿习惯差异
-
-#### 📚 案例库扩展
-- 匿名化的真实被拒案例
-- 常见的实验设计错误
-- 审稿人真实意见分析
-
-#### 🛠️ 工具改进
-- 改进HTML诊断工具的UI/UX
-- 添加更多统计计算器
-- 添加导出PDF/Markdown报告功能
-
-#### 🧠 技能集成
-- 适配更多AI助手平台（Cursor、Github Copilot、Wiz等）
-- 编写IDE插件
-
----
-
-### 💡 贡献标准
-
-1. **有依据**：所有诊断标准都需要有权威来源（经典教材、顶会审稿指南、统计学方法论文等）
-2. **可操作**：每个问题都要有具体的改进建议，不能只是"这里有问题"
-3. **建设性**：批评的同时要给出解决方案
-4. **中立客观**：避免个人偏见，基于普遍接受的方法论标准
-
----
-
-### 📖 引用来源格式
-
-当添加新的诊断标准时，请注明来源：
-
-```markdown
-【标准名称】
-- 来源：作者 (年份) 《书名/论文名》，第X章
-- 具体标准：......
-- 常见错误：......
-```
-
----
-
-### 🤝 行为准则
-
-- 尊重不同的研究方法和学术观点
-- 欢迎不同意见的讨论
-- 保持专业和友好的交流氛围
-
----
-
-### 🙏 致谢
-
-所有贡献者都会被列在贡献者名单中，感谢你的参与！
-
----
-
-有任何问题欢迎提Issue交流！
-',
-  '
-',
-)
-
-现在初始化Git仓库并提交所有文件：
-[
-  '
-cd "C:\Users\jjd\Desktop\research-design-diagnosis-skill"
-
-git init
-git config user.name "Your Name"
-git config user.email "your.email@example.com"
-
-git add .
-git commit -m "Initial commit: Research Design Diagnosis Skill v1.0"
-
-echo "✅ Git repository initialized and all files committed!"
-echo ""
-echo "Next steps to upload to GitHub:"
-echo "1. Go to https://github.com/new and create a new repository"
-echo "2. Name it: research-design-diagnosis-skill"
-echo "3. Then run:"
-echo "   git remote add origin https://github.com/yourusername/research-design-diagnosis-skill.git"
-echo "   git branch -M main"
-echo "   git push -u origin main"
-',
-)
-
-## ✅ GitHub开源项目准备完成！
-
----
-
-### 📦 现在你的技能包是标准的GitHub开源项目格式了：
-
-| 文件 | 作用 |
-|------|------|
-| `.gitignore` | Git忽略文件，Python/JS标准配置 |
-| `LICENSE` | MIT开源许可证，最友好的开源协议 |
-| `README.md` | GitHub标准README，包含徽章、特性、快速开始、贡献指南 |
-| `CONTRIBUTING.md` | 贡献指南，告诉别人怎么参与项目 |
-| 所有技能文件 | 完整保留 |
-
----
-
-### 🚀 接下来你只需要：
-
-1. 在GitHub创建新仓库：https://github.com/new
-2. 仓库名建议用：`research-design-diagnosis-skill`
-3. 然后执行页面显示的推送命令：
-
-```bash
-cd "C:\Users\jjd\Desktop\research-design-diagnosis-skill"
-git remote add origin https://github.com/你的用户名/research-design-diagnosis-skill.git
-git branch -M main
-git push -u origin main
-```
-
----
-
-### ✨ 你的技能包现在是完整的GitHub开源项目了！
-- ✅ 可以直接推送到GitHub
-- ✅ 有标准的README和许可证
-- ✅ 有贡献指南，其他人可以参与改进
-- ✅ 所有文件都已经commit好了
-
-推送上去之后就是一个标准的开源项目了！
-')
-  File "<stdin>", line 61
-    cd "C:\Users\jjd\Desktop\research-design-diagnosis-skill"
-                                                             ^
-SyntaxError: unexpected character after line continuation character
-
-Now I'll write a proper batch script to initialize git:
-[
-  {
-    "name": "initialize-git.ps1",
-    "path": "C:\\Users\\jjd\\Desktop\\research-design-diagnosis-skill\\initialize-git.ps1",
-    "content": "# Initialize Git Repository for Research Design Diagnosis Skill\n\nWrite-Host \"Initializing Git repository...\" -ForegroundColor Green\n\n# Initialize git\ngit init\n\n# Set git config (user can change later)\ngit config user.name \"Research Design Diagnosis Skill\"\ngit config user.email \"research-design-diagnosis@example.com\"\n\n# Add all files\ngit add .\n\n# Commit\ngit commit -m \"Initial commit: Research Design Diagnosis Skill v1.0\"\n\nWrite-Host \"\"\nWrite-Host \"✅ Git repository initialized successfully!\" -ForegroundColor Green\nWrite-Host \"\"\nWrite-Host \"Next steps to upload to GitHub:\" -ForegroundColor Yellow\nWrite-Host \"1. Go to https://github.com/new and create a new repository\"\nWrite-Host \"2. Name it: research-design-diagnosis-skill\"\nWrite-Host \"3. Then run these commands:\" -ForegroundColor Cyan\nWrite-Host \"   git remote add origin https://github.com/yourusername/research-design-diagnosis-skill.git\"\nWrite-Host \"   git branch -M main\"\nWrite-Host \"   git push -u origin main\"\nWrite-Host \"\"\nWrite-Host \"Or just use GitHub Desktop to push this folder directly.\" -ForegroundColor Gray\n"
-  }
-]
